@@ -1,0 +1,9 @@
+# Python related
+*.pyc
+__pycache__/
+venv/
+*.venv/
+.env
+
+# Editor/IDE specific files
+.vscode/
