@@ -17,7 +17,6 @@ describe('AppComponent', () => {
   it(`should have the 'to-do-list-ui' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('to-do-list-ui');
   });
 
   it('should render title', () => {

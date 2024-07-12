@@ -1,0 +1,24 @@
+.task-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.task-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: grab;
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+}
+
+.larger-input {
+  flex: 1;
+}
+
