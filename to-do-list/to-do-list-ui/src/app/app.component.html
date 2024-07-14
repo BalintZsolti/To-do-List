@@ -27,7 +27,9 @@
 <div class="row">
     <div class="col-md-3">
         <div class="input-group mt-2">
-            <button class="btn btn-dark btn-block" (click)="toggleDescriptionInput()">Add Description</button>
+          <button class="btn btn-dark btn-block" (click)="toggleDescriptionInput()">
+            {{ showDescriptionInput ? 'Hide Description' : 'Add Description' }}
+          </button>
         </div>
     </div>
     <div class="col-md-3">

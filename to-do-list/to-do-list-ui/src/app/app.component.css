@@ -1,29 +1,97 @@
+html, body {
+  font-family: Arial, sans-serif;
+  background-color: #7e5631;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+
+.d-flex.justify-content-center {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.btn-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background-color: #23272b;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-info:hover {
+  background-color: #117a8b;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #a71d2a;
+}
+
 .task-container {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 8px;
   padding: 15px;
-  margin-top: 10px;
+  background-color: #cea177;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 .task-item {
+  padding: 15px;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #FBE9D0;
   cursor: grab;
 }
 
-.task-item.dragging {
-  opacity: 0.5;
+.task-item h6 {
+  margin-bottom: 5px;
 }
 
-.larger-input {
-  flex: 1;
+.task-item p {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.task-item .btn-info {
+  margin-right: 5px;
+}
+
+.task-item .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.task-item .btn-danger:hover {
+  background-color: #a71d2a;
+}
+
+.task-item:hover {
+  background-color: #e9ecef;
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -31,33 +99,39 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-dialog {
   position: relative;
   margin: auto;
-  padding: 20px;
   width: 80%;
   max-width: 500px;
-}
-
-.modal-content {
   background-color: #fff;
-  margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-.close {
+.modal-header .modal-title {
+  font-size: 1.2rem;
+}
+
+.modal-header .close {
   cursor: pointer;
+  font-size: 1.5rem;
+  color: #6c757d;
 }
 
+.modal-body {
+  padding-bottom: 20px;
+}
