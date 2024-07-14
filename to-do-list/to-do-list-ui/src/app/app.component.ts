@@ -19,12 +19,14 @@ export class AppComponent implements OnInit {
   doing: Task[] = [];
   done: Task[] = [];
   taskIdCounter: number = 0;
+  selectedTask: Task | null = null;
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.getTasks();
   }
+
 
   getTasks(): void {
     this.taskService.getTasks()
@@ -63,30 +65,6 @@ export class AppComponent implements OnInit {
     this.showDescriptionInput = !this.showDescriptionInput;
   }
 
-  editTask(task: Task) {
-    const newTitle = prompt('New name:', task.title);
-    const newDescription = prompt('New description:', task.description);
-    if (newTitle !== null && newTitle.trim() !== '') {
-      task.title = newTitle;
-    }
-    if (newDescription !== null && newDescription.trim() !== '') {
-      task.description = newDescription;
-    }
-
-    this.taskService.editTask(task.id, task)
-      .subscribe(
-        (response: Task) => {
-          console.log('Edited task:', response);
-
-          this.tasks = this.updateTaskInList(this.tasks, response);
-          this.doing = this.updateTaskInList(this.doing, response);
-          this.done = this.updateTaskInList(this.done, response);
-        },
-        error => {
-          console.error('Error editing task:', error);
-        }
-      );
-  }
 
   private updateTaskInList(taskList: Task[], updatedTask: Task): Task[] {
     const index = taskList.findIndex(task => task.id === updatedTask.id);
@@ -115,6 +93,40 @@ export class AppComponent implements OnInit {
           console.error('Error deleting task:', error);
         }
       );
+  }
+
+  openEditModal(task: Task): void {
+    this.selectedTask = { ...task };
+    const modal = document.getElementById('editTaskModal');
+    if (modal) {
+      modal.style.display = 'block';
+      this.getTasks();
+    }
+  }
+
+  closeEditModal(): void {
+    const modal = document.getElementById('editTaskModal');
+    if (modal) {
+      modal.style.display = 'none';
+      this.getTasks();
+    }
+  }
+
+  saveTask(): void {
+    if (this.selectedTask) {
+      this.taskService.editTask(this.selectedTask.id, this.selectedTask).subscribe(
+        response => {
+          this.updateTaskInList(this.tasks, response);
+          this.updateTaskInList(this.doing, response);
+          this.updateTaskInList(this.done, response);
+
+          this.closeEditModal();
+        },
+        error => {
+          console.error('Error updating task', error);
+        }
+      );
+    }
   }
 
   onDragStart(event: DragEvent, task: Task) {

@@ -45,9 +45,32 @@
                     <h6>{{ task.title }}</h6>
                     <p>{{ task.description }}</p>
                     <div class="float-right">
-                        <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="editTask(task)">Edit</button>
+                        <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="openEditModal(task)">Edit</button>
                         <button class="btn btn-sm btn-danger" (click)="deleteTask(task)">Delete</button>
                     </div>
+                </div>
+                <div id="editTaskModal" class="modal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Edit Task</h5>
+                        <button type="button" class="close" (click)="closeEditModal()">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <form (ngSubmit)="saveTask()">
+                          <div class="form-group">
+                            <label for="taskTitle">Title</label>
+                            <input type="text" id="taskTitle" class="form-control" *ngIf="selectedTask" [(ngModel)]="selectedTask.title" name="title">
+                          </div>
+                          <div class="form-group">
+                            <label for="taskDescription">Description</label>
+                            <textarea id="taskDescription" class="form-control" *ngIf="selectedTask" [(ngModel)]="selectedTask.description" name="description"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -58,8 +81,8 @@
                     <h6>{{ task.title }}</h6>
                     <p>{{ task.description }}</p>
                     <div class="float-right">
-                        <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="editTask(task)">Edit</button>
-                        <button class="btn btn-sm btn-danger" (click)="deleteTask(task)">Delete</button>
+                      <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="openEditModal(task)">Edit</button>
+                      <button class="btn btn-sm btn-danger" (click)="deleteTask(task)">Delete</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +94,7 @@
                     <h6>{{ task.title }}</h6>
                     <p>{{ task.description }}</p>
                     <div class="float-right">
-                        <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="editTask(task)">Edit</button>
+                        <button class="btn btn-sm btn-info" style="margin-right: 4px;" (click)="openEditModal(task)">Edit</button>
                         <button class="btn btn-sm btn-danger" (click)="deleteTask(task)">Delete</button>
                     </div>
                 </div>
