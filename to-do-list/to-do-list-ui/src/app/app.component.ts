@@ -20,13 +20,13 @@ export class AppComponent implements OnInit {
   done: Task[] = [];
   taskIdCounter: number = 0;
   selectedTask: Task | null = null;
+  showTitleError: boolean = false;
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.getTasks();
   }
-
 
   getTasks(): void {
     this.taskService.getTasks()
@@ -42,29 +42,34 @@ export class AppComponent implements OnInit {
   }
 
   addTask() {
-    if (this.newTaskTitle.trim() !== '') {
-      const newTask: Task = {
-        id: '',
-        title: this.newTaskTitle,
-        description: this.newTaskDescription,
-        status: 'tasks'
-      };
-
-      this.taskService.createTask(newTask)
-        .subscribe(response => {
-          this.tasks.push(response);
-          this.newTaskTitle = '';
-          this.newTaskDescription = '';
-          this.showDescriptionInput = false;
-        });
+    if (this.newTaskTitle.trim() === '') {
+      this.showTitleError = true;
+      setTimeout(() => {
+        this.showTitleError = false;
+      }, 3000);
+      return;
     }
+
+    const newTask: Task = {
+      id: '',
+      title: this.newTaskTitle,
+      description: this.newTaskDescription,
+      status: 'tasks'
+    };
+
+    this.taskService.createTask(newTask)
+      .subscribe(response => {
+        this.tasks.push(response);
+        this.newTaskTitle = '';
+        this.newTaskDescription = '';
+        this.showDescriptionInput = false;
+      });
     this.getTasks();
   }
 
   toggleDescriptionInput() {
     this.showDescriptionInput = !this.showDescriptionInput;
   }
-
 
   private updateTaskInList(taskList: Task[], updatedTask: Task): Task[] {
     const index = taskList.findIndex(task => task.id === updatedTask.id);
@@ -73,7 +78,6 @@ export class AppComponent implements OnInit {
     }
     return taskList;
   }
-
 
   deleteTask(task: Task) {
     if (!task.id) {

@@ -36,6 +36,9 @@
         <div class="input-group mt-2">
             <button class="btn btn-dark btn-block" (click)="addTask()">Add task</button>
         </div>
+        <div *ngIf="showTitleError" class="text-danger">
+          Task name is required.
+        </div>
     </div>
 </div>
 
