@@ -2,7 +2,7 @@
 
 API
 
-.\venv\Scripts\activate
+.\venv\Scripts\activate <br>
 
 uvicorn main:app --reload
 
