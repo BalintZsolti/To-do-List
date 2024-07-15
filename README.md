@@ -1,2 +1,10 @@
 # to-do-list
-readme
+
+API
+
+.\venv\Scripts\activate
+uvicorn main:app --reload
+
+UI
+
+npm start
